@@ -14,11 +14,11 @@
 **IMPACT-Synth-KonfAI** is the **command-line interface (CLI)** for performing **inference** and **uncertainty estimation** with the *IMPACT-Synth* models.  
 It provides a streamlined way to generate **synthetic CT (sCT) images** from MR or CBCT scans, leveraging the [KonfAI](https://github.com/vboussot/KonfAI) framework for efficient inference, test-time augmentation (TTA), model ensembling, and uncertainty quantification.  
 
-The underlying **ImpactSynth** models are a family of **supervised convolutional neural networks (CNNs)** dedicated to **sCT generation**. 
+The underlying **IMPACT-Synth** models are a family of **supervised convolutional neural networks (CNNs)** dedicated to **sCT generation**. 
 They build upon the research presented in **“Why Registration Quality Matters: Enhancing sCT Synthesis with IMPACT-Based Registration” (Boussot et al., 2025)**.  
 These models are trained on **carefully aligned MR–CT pairs**, where alignment is optimized through the **IMPACT-Reg loss** to minimize spatial bias. Their training further integrates the **IMPACT-Synth loss**, a **perceptual loss derived from semantic representations of segmentation networks**. Together, **precise spatial alignment** and **semantic perceptual supervision** reinforce **anatomical fidelity** and **realistic tissue contrast** in the synthesized CT images.  
 
-The official **ImpactSynth models** are available on [Hugging Face](https://huggingface.co/VBoussot/ImpactSynth) and can be executed directly through this CLI.
+The official **IMPACT-Synth models** are available on [Hugging Face](https://huggingface.co/VBoussot/ImpactSynth) and can be executed directly through this CLI.
 
 ---
 
@@ -95,7 +95,7 @@ If you use **IMPACT-Synth-KonfAI** in your work, please cite:
 ## 🔗 Links
 
 - 🧠 **KonfAI Framework:** [github.com/vboussot/KonfAI](https://github.com/vboussot/KonfAI)  
-- 🤗 **Model Hub:** [huggingface.co/VBoussot/ImpactSynth](https://huggingface.co/VBoussot/ImpactSynth)  
-- 📦 **PyPI Package:** [pypi.org/project/impactsynth](https://pypi.org/project/impactsynth)  
+- 🤗 **Model Hub:** [huggingface.co/VBoussot/IMPACT-Synth](https://huggingface.co/VBoussot/ImpactSynth)  
+- 📦 **PyPI Package:** [pypi.org/project/impact_synth_konfai](https://pypi.org/project/impact_synth_konfai)  
 
 ---
