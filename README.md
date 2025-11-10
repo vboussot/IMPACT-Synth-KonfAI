@@ -43,7 +43,7 @@ pip install .
 Perform image-to-sCT synthesis:
 
 ```bash
-impact_synth -i input.nii.gz -o sCT.nii.gz
+impact-synth-konfai -i input.nii.gz -o sCT.nii.gz
 ```
 
 ### Optional arguments
@@ -64,7 +64,7 @@ impact_synth -i input.nii.gz -o sCT.nii.gz
 ### Example
 
 ```bash
-impact_synth -i patient01.nii.gz -o sCT_patient01.nii.gz --gpu 0 --tta 2 --ensemble 5 --uncertainty
+impact-synth-konfai -i patient01.nii.gz -o sCT_patient01.nii.gz --gpu 0 --tta 2 --ensemble 5 --uncertainty
 ```
 
 ---
