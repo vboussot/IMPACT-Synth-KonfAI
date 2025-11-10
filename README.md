@@ -18,8 +18,7 @@ The underlying **ImpactSynth** models are a family of **supervised convolutional
 They build upon the research presented in **“Why Registration Quality Matters: Enhancing sCT Synthesis with IMPACT-Based Registration” (Boussot et al., 2025)**.  
 These models are trained on **carefully aligned MR–CT pairs**, where alignment is optimized through the **IMPACT-Reg loss** to minimize spatial bias. Their training further integrates the **IMPACT-Synth loss**, a **perceptual loss derived from semantic representations of segmentation networks**. Together, **precise spatial alignment** and **semantic perceptual supervision** reinforce **anatomical fidelity** and **realistic tissue contrast** in the synthesized CT images.  
 
-The official **ImpactSynth models** are available on [Hugging Face](https://huggingface.co/VBoussot/ImpactSynth)  
-and can be executed directly through this CLI.
+The official **ImpactSynth models** are available on [Hugging Face](https://huggingface.co/VBoussot/ImpactSynth) and can be executed directly through this CLI.
 
 ---
 
