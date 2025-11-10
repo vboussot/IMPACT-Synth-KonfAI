@@ -1,4 +1,4 @@
-[![PyPI version](https://img.shields.io/pypi/v/impactsynth.svg?color=blue)](https://pypi.org/project/impactsynth/)
+[![PyPI version](https://img.shields.io/pypi/v/impactsynth.svg?color=blue)](https://pypi.org/project/impact_synth_konfai/)
 [![Python](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![KonfAI](https://img.shields.io/badge/framework-KonfAI-orange.svg)](https://github.com/vboussot/KonfAI)
