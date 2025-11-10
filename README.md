@@ -27,13 +27,13 @@ and can be executed directly through this CLI.
 
 From PyPI:
 ```bash
-pip install impactsynth
+pip install Impact-Synth-KonfAI
 ```
 
 From source:
 ```bash
-git clone https://github.com/vboussot/ImpactSynth.git
-cd ImpactSynth
+git clone https://github.com/vboussot/Impact-Synth-KonfAI.git
+cd Impact-Synth-KonfAI
 pip install .
 ```
 ---
