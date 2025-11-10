@@ -11,7 +11,7 @@
 
 ## 🧩 Overview
 
-**IMPACT-Synth-KonfAI** is the **command-line interface (CLI)** for performing **inference** and **uncertainty estimation** with the *ImpactSynth* models.  
+**IMPACT-Synth-KonfAI** is the **command-line interface (CLI)** for performing **inference** and **uncertainty estimation** with the *IMPACT-Synth* models.  
 It provides a streamlined way to generate **synthetic CT (sCT) images** from MR or CBCT scans, leveraging the [KonfAI](https://github.com/vboussot/KonfAI) framework for efficient inference, test-time augmentation (TTA), model ensembling, and uncertainty quantification.  
 
 The underlying **ImpactSynth** models are a family of **supervised convolutional neural networks (CNNs)** dedicated to **sCT generation**. 
