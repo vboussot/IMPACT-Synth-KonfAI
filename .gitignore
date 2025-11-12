@@ -2,3 +2,4 @@ impact_synth_konfai.egg-info
 .env
 __pycache__
 *.mha
+.dist
