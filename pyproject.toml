@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "impact-synth-konfai"
-version = "1.0.0"
+version = "1.0.2"
 description = "Fast and lightweight CLI for synthetic CT generation using IMPACT-Synth models within the KonfAI framework."
 license = "Apache-2.0"
 readme = "README.md"
@@ -15,7 +15,7 @@ authors = [
 
 requires-python = ">=3.8"
 dependencies = [
-"konfai==1.3.5",
+"konfai==1.4.0",
 ]
 
 [project.urls]

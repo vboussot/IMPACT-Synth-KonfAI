@@ -3,3 +3,5 @@ impact_synth_konfai.egg-info
 __pycache__
 *.mha
 .dist
+.mypy_cache
+dist

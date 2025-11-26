@@ -1,6 +1,7 @@
 import argparse
 import importlib.metadata
 import os
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -60,7 +61,7 @@ def main():
         help="Output synthetic CT path.",
         type=lambda p: Path(p).absolute(),
         required=False,
-        default=Path("sct.mha").absolute(),
+        default=Path("sct.nii.gz").absolute(),
     )
 
     parser.add_argument(
@@ -140,15 +141,17 @@ def main():
             sys.exit(1)
 
         cmd = [
-            "konfai",
-            "PREDICTION_HF",
-            "-y",
-            "--MODEL",
+            "konfai-apps",
+            "infer",
+            f"{IMPACT_SYNTH_KONFAI_REPO}:{args.model}",
+            "-i",
+            str(args.input),
+            "--ensemble",
             str(args.ensemble),
             "--tta",
             str(args.tta),
-            "--config",
-            f"{IMPACT_SYNTH_KONFAI_REPO}:{args.model}",
+            "-o",
+            str(tmpdir),
         ]
 
         if args.gpu:
@@ -166,26 +169,38 @@ def main():
         except FileNotFoundError:
             print("❌ 'konfai' executable not found. Ensure it is installed and on PATH.", file=sys.stderr)
             sys.exit(1)
+        save_sct(tmpdir / "ImpactSynth" / "Output" / "P000" / "sCT.mha", args.output)
 
-        save_sct(tmpdir / "Predictions" / "ImpactSynth" / "Dataset" / "P001" / "sCT.mha", args.output)
-
-        suffix = "".join(args.output.suffixes)
-        base = args.output.stem
-        i = 0
         if args.uncertainty:
-            uncertainty_path = args.output.parent / f"{base}_Uncertainty"
-            uncertainty_path.mkdir(parents=True, exist_ok=True)
-            for ensemble in range(args.tta):
-                for tta in range(args.ensemble):
-                    save_sct(
-                        tmpdir / "Predictions" / "ImpactSynth" / "Dataset" / "P001" / f"sCT_{i}.mha",
-                        uncertainty_path / f"{base}_{ensemble:02d}_{tta:02d}{suffix}",
-                    )
-                    i += 1
+            cmd = [
+                "konfai-apps",
+                "uncertainty",
+                f"{IMPACT_SYNTH_KONFAI_REPO}:{args.model}",
+                "-i",
+                str(tmpdir / "ImpactSynth" / "Output" / "P000" / "InferenceStack.mha"),
+                "-o",
+                str(tmpdir / "Uncertainty"),
+            ]
 
-            save_sct(
-                tmpdir / "Predictions" / "ImpactSynth" / "Dataset" / "P001" / "sCT_var.mha",
-                uncertainty_path / f"{base}_var{suffix}",
-            )
+            if args.gpu:
+                cmd += ["--gpu", args.gpu]
+            else:
+                cmd += ["--cpu", str(args.cpu)]
+            if args.quiet:
+                cmd += ["-quiet"]
+            try:
+                subprocess.run(cmd, cwd=tmpdir, check=True)
+            except subprocess.CalledProcessError as e:
+                print(f"❌ 'konfai PREDICTION' failed with exit code {e.returncode}.", file=sys.stderr)
+                sys.exit(e.returncode)
+            except FileNotFoundError:
+                print("❌ 'konfai' executable not found. Ensure it is installed and on PATH.", file=sys.stderr)
+                sys.exit(1)
+
+            dest = Path(".")
+            for file in (tmpdir / "Uncertainty" / "ImpactSynth" / "Output" / "P000").glob("*.mha"):
+                shutil.copy(file, dest / file.name)
+            shutil.copy(tmpdir / "Uncertainty" / "ImpactSynth" / "Metric_TRAIN.json", dest / "Metric.json")
+
     if not args.quiet:
         print(f"✅ Done. Synthetic CT saved to: {args.output}")
